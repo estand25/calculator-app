@@ -37,7 +37,7 @@ class CFrame extends React.Component {
                     />
                     <DisplayButtons
                         sty={"Button-Operation"}
-                        input={"\u2013"}
+                        input={"\u2212"}
                     />
                 </div>
                 <div className="row">
