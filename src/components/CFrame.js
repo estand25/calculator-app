@@ -1,19 +1,61 @@
 import React from 'react';
 import '../App.css'
 import DisplayButtons from './DisplayButtons';
+import ComplexDisplayButton from './ComplexDisplayButton';
 
 class CFrame extends React.Component {
     constructor(props){
         super(props);
 
         this.state = {
-          display: 0,  
+          subTotal: 0, 
+          sign: '',
+          total: 0 
         };
+    }
+
+    onOperationClick(Ope){
+        console.log(`Operation: ${Ope}`);
+        var {total, subTotal} = this.state;
+
+        console.log(`Total: ${total}, Sub-total: ${subTotal}`);
+        
+
+        if(subTotal === 0) 
+            return
+
+        this.setState({
+            total: subTotal,
+            subTotal: 0
+        })
+
+        switch (Ope) {
+            case 'a':
+                
+                break;
+            case 's':
+                
+                break;
+            case 'd':
+                
+                break;
+            // case 'e':
+
+
+            //     this.setState({
+            //         sign: ''
+            //     });
+            //     break;
+        
+            default:
+                break;
+        }
+        
     }
 
     onNumberClick(n){
         console.log(`Current Number: ${n}`);
-        var numString = this.state.display.toString();
+        var numString = this.state.subTotal.toString();
 
         if('0' === numString){
             numString = n.toString(); 
@@ -24,7 +66,7 @@ class CFrame extends React.Component {
         console.log(`Display Number: ${numString}`);  
         
         this.setState({
-            display: numString
+            subTotal: numString
         })
     }
 
@@ -34,7 +76,8 @@ class CFrame extends React.Component {
         console.log(`Display Number: 0`);  
         
         this.setState({
-            display: 0
+            total: 0,
+            subTotal: 0
         })
     }
 
@@ -42,9 +85,11 @@ class CFrame extends React.Component {
         return (
             <div className="Frame-Main">
                 <div className="column">
-                    <DisplayButtons
+                    <ComplexDisplayButton
+                        stySub={"Button-SubMain"}
+                        subinput={this.state.total}
                         sty={"Button-Main"}
-                        input={this.state.display}
+                        input={this.state.subTotal}
                     />
                 </div>
                 <div className="row">
@@ -56,6 +101,7 @@ class CFrame extends React.Component {
                     <DisplayButtons
                         sty={"Button-Operation"}
                         input={"\xF7"}
+                        onClick={() => this.onOperationClick('d')}
                     />
                 </div>
                 <div className="row">
@@ -77,6 +123,7 @@ class CFrame extends React.Component {
                     <DisplayButtons
                         sty={"Button-Operation"}
                         input={"\u2212"}
+                        onClick={() => this.onOperationClick('s')}
                     />
                 </div>
                 <div className="row">
@@ -98,6 +145,7 @@ class CFrame extends React.Component {
                     <DisplayButtons
                         sty={"Button-Operation"}
                         input={"+"}
+                        onClick={() => this.onOperationClick('a')}
                     />
                 </div>
                 <div className="row">
@@ -119,6 +167,7 @@ class CFrame extends React.Component {
                     <DisplayButtons
                         sty={"Button-Operation"}
                         input={"="}
+                        onClick={() => this.onOperationClick('e')}
                     />
                 </div>
             </div>

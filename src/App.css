@@ -10,23 +10,34 @@
   flex: 1;
 }
 
+.Button-SubMain {
+  background-color: rgb(52, 64, 77);
+  /* border: 1px solid red; */
+  color: white;
+  padding: 10px;
+  font-size: calc(5px + 2vmin);
+  text-align: left;
+}
+
 .Button-Main {
   background-color: rgb(52, 64, 77);
-  border: 1px solid red;
+  /* border: 1px solid red; */
   color: white;
   padding: 20px;
   font-size: calc(40px + 2vmin);
   text-align: right;
+  width: 100%;
 }
 
 .Button-Clear {
   background-color: rgb(200, 202, 204);
   border: 1px solid red;
   color: gray;
-  padding-right: 40px;
+  /* padding-right: 40px;
   padding-left: 40px;
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 20px; */
+  padding:20px;
   font-size: calc(30px + 2vmin);
   text-align: center;
   width: 100%;
@@ -55,8 +66,8 @@
 }
 
 .Frame-Main {
-  width: 350px;
-  height: 500px;
+  /* width: 350px;
+  height: 500px; */
   border: 1px solid red;
   padding: 0px;
   margin-top: 10%;
