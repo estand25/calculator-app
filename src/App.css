@@ -33,14 +33,11 @@
   background-color: rgb(200, 202, 204);
   border: 1px solid red;
   color: gray;
-  /* padding-right: 40px;
-  padding-left: 40px;
-  padding-top: 20px;
-  padding-bottom: 20px; */
   padding:20px;
   font-size: calc(30px + 2vmin);
   text-align: center;
-  width: 100%;
+  width: 50%;
+  /* height: 25%; */
 }
 
 .Button-Operation {

@@ -14,43 +14,60 @@ class CFrame extends React.Component {
         };
     }
 
-    onOperationClick(Ope){
-        console.log(`Operation: ${Ope}`);
-        var {total, subTotal} = this.state;
-
-        console.log(`Total: ${total}, Sub-total: ${subTotal}`);
+    onEqualClick(){
         
+        var {total, subTotal, sign } = this.state;
 
-        if(subTotal === 0) 
-            return
+        console.log(`Total: ${total}, Sub-total: ${subTotal}, Sign: ${sign}`);
 
-        this.setState({
-            total: subTotal,
-            subTotal: 0
-        })
-
-        switch (Ope) {
+        switch (sign) {
             case 'a':
-                
+                total = (parseInt(total) + parseInt(subTotal));
+                subTotal = 0;
                 break;
             case 's':
-                
+                total = (parseInt(subTotal) - parseInt(total)); 
+                subTotal = 0;
                 break;
             case 'd':
-                
+                total = (parseInt(subTotal) / parseInt(total));
+                subTotal = 0;
                 break;
-            // case 'e':
-
-
-            //     this.setState({
-            //         sign: ''
-            //     });
-            //     break;
-        
+            case 'm':
+                total = (parseInt(subTotal) * parseInt(total))
+                subTotal = 0;
             default:
                 break;
         }
+
+        this.setState({
+            total: total,
+            subTotal: subTotal,
+            sign: sign
+        })
+
+        console.log(`Total: ${total}, Sub-total: ${subTotal}, Sign: ${sign}`);
+    }
+
+    onOperationClick(Ope){
+        console.log(`Operation: ${Ope}`);
+        var {total, subTotal, sign } = this.state;
+
+        console.log(`Total: ${total}, Sub-total: ${subTotal}, Sign: ${sign}`);
         
+        if(subTotal === 0) 
+            return
+
+        total = subTotal;
+        subTotal = 0;
+
+        this.setState({
+            total: total,
+            subTotal: subTotal,
+            sign: Ope
+        })
+
+        console.log(`Total: ${total}, Sub-total: ${subTotal}, Sign: ${sign}`);        
     }
 
     onNumberClick(n){
@@ -97,6 +114,11 @@ class CFrame extends React.Component {
                         sty={"Button-Clear"}
                         input={"clear"}
                         onClick={() => this.clearOnClick()}
+                    />
+                    <DisplayButtons
+                        sty={"Button-Operation"}
+                        input={"*"}
+                        onClick={() => this.onOperationClick('m')}
                     />
                     <DisplayButtons
                         sty={"Button-Operation"}
@@ -167,7 +189,7 @@ class CFrame extends React.Component {
                     <DisplayButtons
                         sty={"Button-Operation"}
                         input={"="}
-                        onClick={() => this.onOperationClick('e')}
+                        onClick={() => this.onEqualClick()}
                     />
                 </div>
             </div>
