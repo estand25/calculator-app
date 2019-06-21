@@ -36,6 +36,7 @@ class CFrame extends React.Component {
             case 'm':
                 total = (parseInt(subTotal) * parseInt(total))
                 subTotal = 0;
+                break;
             default:
                 break;
         }
