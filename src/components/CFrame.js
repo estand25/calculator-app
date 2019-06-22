@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import '../App.css'
 import DisplayButtons from './DisplayButtons';
 import ComplexDisplayButton from './ComplexDisplayButton';
@@ -15,7 +16,6 @@ class CFrame extends React.Component {
     }
 
     onEqualClick(){
-        
         var {total, subTotal, sign } = this.state;
 
         console.log(`Total: ${total}, Sub-total: ${subTotal}, Sign: ${sign}`);
@@ -91,11 +91,23 @@ class CFrame extends React.Component {
     clearOnClick(){
         console.log('Clear');
 
-        console.log(`Display Number: 0`);  
+        console.log(`Subtotal/Total Number: 0`);  
         
         this.setState({
             total: 0,
-            subTotal: 0
+            subTotal: 0,
+            sign: ''
+        })
+    }
+
+    emptyOnClick(){
+        console.log('empty');
+
+        console.log('Total Number: 0');
+
+        this.setState({
+            total:0,
+            sign: ''
         })
     }
 
@@ -113,8 +125,13 @@ class CFrame extends React.Component {
                 <div className="row">
                     <DisplayButtons
                         sty={"Button-Clear"}
-                        input={"clear"}
+                        input={"c"}
                         onClick={() => this.clearOnClick()}
+                    />
+                    <DisplayButtons
+                        sty={"Button-Clear"}
+                        input={"e"}
+                        onClick={() => this.emptyOnClick()}
                     />
                     <DisplayButtons
                         sty={"Button-Operation"}
