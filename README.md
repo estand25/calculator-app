@@ -6,7 +6,7 @@ A simple calculator-app
 
 This is what the current version looks like
 
-![Sample Calculator App](https://github.com/estand25/calculator-app/src/image/sample-calculator-app.PNG)
+![Sample Calculator App](https://github.com/estand25/calculator-app/blob/master/src/image/sample-calculator-app.PNG)
 
 ## Future Features
 
