@@ -215,4 +215,4 @@ class CFrame extends React.Component {
     }
 }
 
-export default CFrame;
+export default connect()(CFrame);
