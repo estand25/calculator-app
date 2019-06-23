@@ -33,10 +33,10 @@ export const emptyPicked = () => {
 export const numberPicked = (number) => {
     return {
         type: NUMBER_PICKED,
-        number: number.toString()
+        number
     }
 }
-
+   
 export const equalPicked = () => {
     return {
         type: EQUAL_PICKED

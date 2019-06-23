@@ -7,66 +7,91 @@ import {
 } from '../actions/type'
 
 const initialState = {
-    sign: '',
+    sign: "",
     total: 0,
     subTotal: 0
 }
 
 export const calculator = (state = initialState, action) => {
     switch (action.type) {
-        case OPER_PICKED:
-            return [...state, {
+        case OPER_PICKED:{
+            var a =  {...state, 
                     sign: action.sign, 
-                    total: state.subTotal === 0 ? 0 : state.subTotal, 
-                    subTotal: 0
-                }]
-        case CLEAR_PICKED:
-            return [...state, {
+                    total: state.sign === 'e' ? state.total : state.subtotal === 0 ? 0 : state.subTotal, 
+                    subTotal: 0,
+                }
+            
+            console.log(a);
+            return a;
+        }     
+        case CLEAR_PICKED:{
+            var b = {...state,
+                sign: action.sign,
                 total: action.total, 
                 subTotal: action.subTotal,
-                sign: action.sign
             }
-        ]
-        case EMPTY_PICKED:
-            return [...state,{
-                total: action.total,
-                sign: action.sign        
+            console.log(b);
+            return b;
+        }
+        case EMPTY_PICKED:{
+            var c = {...state,
+                sign: action.sign,   
+                total: action.total,     
             }
-        ]
-        case NUMBER_PICKED:
-            return [...state, {
-                subTotal: action.subTotal.toString() === '0' ? action.number : state.subTotal.toString().concat(action.number)
+            console.log(c);
+            return c;
+        }
+        case NUMBER_PICKED:{
+            var d = {...state,
+                subTotal: state.subTotal === 0 ? action.number : state.subTotal.toString().concat(action.number)
             }
-        ]
-        case EQUAL_PICKED:{
+            console.log(d);
+            return d;
+        }
+        case EQUAL_PICKED: {
+            var e = ''
             switch (state.sign) {
-                case 'a':
-                    return [...state,{
+                case 'a':{
+                    e = {...state,
                             total: (parseInt(state.total) + parseInt(state.subTotal)),
-                            subTotal: 0
-                        }                      
-                    ]
-                case 's':
-                    return [...state,{
-                            total: (parseInt(state.subTotal) - parseInt(state.total)),
-                            subTotal: 0
-                        }                      
-                    ]
-                case 'd':
-                    return [...state,{
+                            subTotal: 0,
+                            sign: 'e'
+                        }
+                        break;
+                }                      
+                case 's': {
+                    e = {...state,
+                            total: (parseInt(state.total) - parseInt(state.subTotal)),
+                            subTotal: 0,
+                            sign: 'e'
+                        } 
+                        break; 
+                }                    
+                case 'd':{
+                    e =  {...state,
                             total: (parseInt(state.subTotal)/ parseInt(state.total)),
-                            subTotal: 0
-                        }                      
-                    ]
-                case 'm':
-                    return [...state,{
+                            subTotal: 0,
+                            sign: 'e'
+                        } 
+                        break;
+                    } 
+                case 'm':{
+                    e =  {...state,
                             total: (parseInt(state.subTotal) * parseInt(state.total)),
-                            subTotal: 0
-                        }                      
-                    ]
-                default:
+                            subTotal: 0,
+                            sign: 'e'
+                        }
+                        break;
+                }                      
+                default:{
+                    e = ''
                     break;
+                }
             }
+            console.log(e);
+            
+            return e;
+            // break;
         }
         default:
             return state;

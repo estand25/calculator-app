@@ -1,114 +1,36 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { 
+    operationPicked, 
+    clearPicked, 
+    emptyPicked, 
+    numberPicked, 
+    equalPicked 
+} from '../actions'
+
 import '../App.css'
 import DisplayButtons from './DisplayButtons';
 import ComplexDisplayButton from './ComplexDisplayButton';
 
 class CFrame extends React.Component {
-    constructor(props){
-        super(props);
-
-        this.state = {
-          subTotal: 0, 
-          sign: '',
-          total: 0 
-        };
-    }
-
     onEqualClick(){
-        var {total, subTotal, sign } = this.state;
-
-        console.log(`Total: ${total}, Sub-total: ${subTotal}, Sign: ${sign}`);
-
-        switch (sign) {
-            case 'a':
-                total = (parseInt(total) + parseInt(subTotal));
-                subTotal = 0;
-                break;
-            case 's':
-                total = (parseInt(subTotal) - parseInt(total)); 
-                subTotal = 0;
-                break;
-            case 'd':
-                total = (parseInt(subTotal) / parseInt(total));
-                subTotal = 0;
-                break;
-            case 'm':
-                total = (parseInt(subTotal) * parseInt(total))
-                subTotal = 0;
-                break;
-            default:
-                break;
-        }
-
-        this.setState({
-            total: total,
-            subTotal: subTotal,
-            sign: sign
-        })
-
-        console.log(`Total: ${total}, Sub-total: ${subTotal}, Sign: ${sign}`);
+        this.props.equalPicked();
     }
 
     onOperationClick(Ope){
-        console.log(`Operation: ${Ope}`);
-        var {total, subTotal, sign } = this.state;
-
-        console.log(`Total: ${total}, Sub-total: ${subTotal}, Sign: ${sign}`);
-        
-        if(subTotal === 0) 
-            return
-
-        total = subTotal;
-        subTotal = 0;
-
-        this.setState({
-            total: total,
-            subTotal: subTotal,
-            sign: Ope
-        })
-
-        console.log(`Total: ${total}, Sub-total: ${subTotal}, Sign: ${sign}`);        
+        this.props.operationPicked(Ope);
     }
 
     onNumberClick(n){
-        console.log(`Current Number: ${n}`);
-        var numString = this.state.subTotal.toString();
-
-        if('0' === numString){
-            numString = n.toString(); 
-        } else {
-            numString = numString.concat(n.toString())
-        }      
-
-        console.log(`Display Number: ${numString}`);  
-        
-        this.setState({
-            subTotal: numString
-        })
+        this.props.numberPicked(n);
     }
 
     clearOnClick(){
-        console.log('Clear');
-
-        console.log(`Subtotal/Total Number: 0`);  
-        
-        this.setState({
-            total: 0,
-            subTotal: 0,
-            sign: ''
-        })
+        this.props.clearPicked();
     }
 
     emptyOnClick(){
-        console.log('empty');
-
-        console.log('Total Number: 0');
-
-        this.setState({
-            total:0,
-            sign: ''
-        })
+        this.props.emptyPicked();
     }
 
     render() {
@@ -117,9 +39,9 @@ class CFrame extends React.Component {
                 <div className="column">
                     <ComplexDisplayButton
                         stySub={"Button-SubMain"}
-                        subinput={this.state.total}
+                        subinput={this.props.total}
                         sty={"Button-Main"}
-                        input={this.state.subTotal}
+                        input={this.props.subTotal}
                     />
                 </div>
                 <div className="row">
@@ -197,7 +119,7 @@ class CFrame extends React.Component {
                     <DisplayButtons
                         sty={"Button-Number"}
                         input={2}
-                        onClick={() => this.onNumberClick(1)}
+                        onClick={() => this.onNumberClick(2)}
                     />
                     <DisplayButtons
                         sty={"Button-Number"}
@@ -215,4 +137,20 @@ class CFrame extends React.Component {
     }
 }
 
-export default connect()(CFrame);
+const mapStateToProps = (state) => {
+    return {
+        total: state.total, 
+        subTotal: state.subTotal, 
+        sign: state.sign,
+    }
+}
+
+const mapDispatchToProps = {
+    operationPicked, 
+    clearPicked, 
+    emptyPicked, 
+    numberPicked, 
+    equalPicked 
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CFrame);
