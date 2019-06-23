@@ -12,7 +12,6 @@
 
 .Button-SubMain {
   background-color: rgb(52, 64, 77);
-  /* border: 1px solid red; */
   color: white;
   padding: 10px;
   font-size: calc(5px + 2vmin);
@@ -21,7 +20,6 @@
 
 .Button-Main {
   background-color: rgb(52, 64, 77);
-  /* border: 1px solid red; */
   color: white;
   padding: 20px;
   font-size: calc(40px + 2vmin);
@@ -37,7 +35,16 @@
   font-size: calc(30px + 2vmin);
   text-align: center;
   width: 25%;
-  /* height: 25%; */
+}
+
+.Button-Empty {
+  background-color: rgb(79, 144, 209);
+  border: 1px solid red;
+  color: black;
+  padding:20px;
+  font-size: calc(30px + 2vmin);
+  text-align: center;
+  width: 25%;
 }
 
 .Button-Operation {

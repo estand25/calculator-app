@@ -1,7 +1,7 @@
 import { 
-    OPER_PICKED, 
+    OPER_PICKED,
     CLEAR_PICKED,
-    EMPTY_PICKED, 
+    EMPTY_PICKED,
     NUMBER_PICKED,
     EQUAL_PICKED,
 } from './type'

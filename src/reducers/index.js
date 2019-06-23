@@ -9,7 +9,11 @@ import {
 const initialState = {
     sign: "",
     total: 0,
-    subTotal: 0
+    subTotal: 0,
+    clearStyle: 'Button-Clear',
+    emptyStyle: 'Button-Empty',
+    operStyle: 'Button-Operation',
+    numbStyle: 'Button-Number',
 }
 
 export const calculator = (state = initialState, action) => {
@@ -20,7 +24,6 @@ export const calculator = (state = initialState, action) => {
                     total: state.sign === 'e' ? state.total : state.subtotal === 0 ? 0 : state.subTotal, 
                     subTotal: 0,
                 }
-            
             console.log(a);
             return a;
         }     
@@ -88,8 +91,7 @@ export const calculator = (state = initialState, action) => {
                     break;
                 }
             }
-            console.log(e);
-            
+            console.log(e);            
             return e;
             // break;
         }

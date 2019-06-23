@@ -5,11 +5,12 @@ import {
     clearPicked, 
     emptyPicked, 
     numberPicked, 
-    equalPicked 
+    equalPicked,
 } from '../actions'
 import '../App.css'
 import DisplayButtons from './DisplayButtons';
 import ComplexDisplayButton from './ComplexDisplayButton';
+import DisplayRow from './DisplayRow'
 
 class CFrame extends React.Component {
     render() {
@@ -23,6 +24,9 @@ class CFrame extends React.Component {
                         input={this.props.subTotal}
                     />
                 </div>
+                {/* <DisplayRow 
+                    dr={('c,e,m,d').toString().split(',')}      
+                /> */}
                 <div className="row">
                     <DisplayButtons
                         sty={"Button-Clear"}
@@ -30,7 +34,7 @@ class CFrame extends React.Component {
                         onClick={() => this.props.clearPicked()}
                     />
                     <DisplayButtons
-                        sty={"Button-Clear"}
+                        sty={"Button-Empty"}
                         input={"e"}
                         onClick={() => this.props.emptyPicked()}
                     />
@@ -121,6 +125,10 @@ const mapStateToProps = (state) => {
         total: state.total, 
         subTotal: state.subTotal, 
         sign: state.sign,
+        clearStyle: state.clearStyle,
+        emptyStyle: state.emptyStyle,
+        operStyle: state.operStyle,
+        numbStyle: state.numbStyle,
     }
 }
 
@@ -129,7 +137,7 @@ const mapDispatchToProps = {
     clearPicked, 
     emptyPicked, 
     numberPicked, 
-    equalPicked 
+    equalPicked,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CFrame);
