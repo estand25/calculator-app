@@ -12,7 +12,7 @@ import DisplayButtons from './DisplayButtons';
 import ComplexDisplayButton from './ComplexDisplayButton';
 import DisplayRow from './DisplayRow'
 
-class CFrame extends React.Component {
+class CFrame extends React.Component {   
     render() {
         return (
             <div className="Frame-Main">
@@ -24,93 +24,94 @@ class CFrame extends React.Component {
                         input={this.props.subTotal}
                     />
                 </div>
-                {/* <DisplayRow 
-                    dr={('c,e,m,d').toString().split(',')}      
-                /> */}
+                {/* <DisplayRow /> */}
                 <div className="row">
                     <DisplayButtons
-                        sty={"Button-Clear"}
+                        sty={this.props.clearStyle}
                         input={"c"}
                         onClick={() => this.props.clearPicked()}
                     />
+                    {/* <div>
+                        {this.generateBoxs()}
+                    </div> */}
                     <DisplayButtons
-                        sty={"Button-Empty"}
+                        sty={this.props.emptyStyle}
                         input={"e"}
                         onClick={() => this.props.emptyPicked()}
                     />
                     <DisplayButtons
-                        sty={"Button-Operation"}
+                        sty={this.props.operStyle}
                         input={"*"}
                         onClick={() =>this.props.operationPicked('m')}
                     />
                     <DisplayButtons
-                        sty={"Button-Operation"}
+                        sty={this.props.operStyle}
                         input={"\xF7"}
                         onClick={() => this.props.operationPicked('d')}
                     />
                 </div>
                 <div className="row">
                     <DisplayButtons
-                        sty={"Button-Number"}
+                        sty={this.props.numbStyle}
                         input={7}
                         onClick={() => this.props.numberPicked(7)}
                     />
                     <DisplayButtons
-                        sty={"Button-Number"}
+                        sty={this.props.numbStyle}
                         input={8}
                         onClick={() => this.props.numberPicked(8)}
                     />
                     <DisplayButtons
-                        sty={"Button-Number"}
+                        sty={this.props.numbStyle}
                         input={9}
                         onClick={() => this.props.numberPicked(9)}
                     />
                     <DisplayButtons
-                        sty={"Button-Operation"}
+                        sty={this.props.operStyle}
                         input={"\u2212"}
                         onClick={() => this.props.operationPicked('s')}
                     />
                 </div>
                 <div className="row">
                     <DisplayButtons
-                        sty={"Button-Number"}
+                        sty={this.props.numbStyle}
                         input={4}
                         onClick={() => this.props.numberPicked(4)}
                     />
                     <DisplayButtons
-                        sty={"Button-Number"}
+                        sty={this.props.numbStyle}
                         input={5}
                         onClick={() => this.props.numberPicked(5)}
                     />
                     <DisplayButtons
-                        sty={"Button-Number"}
+                        sty={this.props.numbStyle}
                         input={6}
                         onClick={() => this.props.numberPicked(6)}
                     />
                     <DisplayButtons
-                        sty={"Button-Operation"}
+                        sty={this.props.operStyle}
                         input={"+"}
                         onClick={() => this.props.operationPicked('a')}
                     />
                 </div>
                 <div className="row">
                     <DisplayButtons
-                        sty={"Button-Number"}
+                        sty={this.props.numbStyle}
                         input={1}
                         onClick={() => this.props.numberPicked(1)}
                     />
                     <DisplayButtons
-                        sty={"Button-Number"}
+                        sty={this.props.numbStyle}
                         input={2}
                         onClick={() => this.props.numberPicked(2)}
                     />
                     <DisplayButtons
-                        sty={"Button-Number"}
+                        sty={this.props.numbStyle}
                         input={3}
                         onClick={() => this.props.numberPicked(3)}
                     />
                     <DisplayButtons
-                        sty={"Button-Operation"}
+                        sty={this.props.operStyle}
                         input={"="}
                         onClick={() => this.props.equalPicked()}
                     />
@@ -129,6 +130,7 @@ const mapStateToProps = (state) => {
         emptyStyle: state.emptyStyle,
         operStyle: state.operStyle,
         numbStyle: state.numbStyle,
+        layOut: state.bLayout,
     }
 }
 

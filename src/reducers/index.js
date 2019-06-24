@@ -14,6 +14,7 @@ const initialState = {
     emptyStyle: 'Button-Empty',
     operStyle: 'Button-Operation',
     numbStyle: 'Button-Number',
+    bLayout: ['c','e','*','\xF7','7','8','9','\u2212','4','5','6','+','1','2','3','=']
 }
 
 export const calculator = (state = initialState, action) => {
