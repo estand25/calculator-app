@@ -17,11 +17,8 @@ class DisplayRow extends React.Component {
         var a = this.props.layOut;
         
         if(a !== 'undefined'){
-            var row1 = [];
-            var row2 = [];
-            var row3 = [];
-            var row4 = [];
             var rows = [];
+            var output = [];
     
             for(let index = 0; index < a.length; index++){
                 var sty = '';
@@ -80,87 +77,17 @@ class DisplayRow extends React.Component {
                 }
     
                 var item = new bu (index, sty, input, oc)
-    
-                if(index < 4)
-                {
-                    row1 = row1.concat([item]);
-                }
-                else if(index < 8)
-                {
-                    row2 = row2.concat([item]);
-                }
-                else if(index < 12)
-                {
-                    row3 = row3.concat([item])
-                }
-                else
-                {
-                    row4 = row4.concat([item])
-                }
-
                 rows = rows.concat([item])
-            }
-    
-            console.log(row1);
-            console.log(row2);
-            console.log(row3);
-            console.log(row4);
-            console.log(rows);
+            }            
             
-
+            output.push(DiRow(1,rows.slice(0,4)))
+            output.push(DiRow(2,rows.slice(4,8)))
+            output.push(DiRow(3,rows.slice(8,12)))
+            output.push(DiRow(4,rows.slice(12,16)))
+            
             return (
                 <div>
-                    {DiRow(row1)}
-                    {DiRow(row2)}
-                    {DiRow(row3)}
-                    {DiRow(row4)}
-                    {/* <DiRow 
-                        row={row1}
-                    /> */}
-                    {/* <div className="row">
-                        {row1.map( b => (
-                            <DisplayButtons
-                                key={b.key}
-                                sty={b.sty}
-                                input={b.input}
-                                onClick={b.onClick}
-                            />
-                        ))
-                        }
-                    </div>
-                    <div className="row">
-                        {row2.map( b => (
-                            <DisplayButtons
-                                key={b.key}
-                                sty={b.sty}
-                                input={b.input}
-                                onClick={b.onClick}
-                            />
-                        ))
-                        }
-                    </div>
-                    <div className="row">
-                        {row3.map( b => (
-                            <DisplayButtons
-                                key={b.key}
-                                sty={b.sty}
-                                input={b.input}
-                                onClick={b.onClick}
-                            />
-                        ))
-                        }
-                    </div>
-                    <div className="row">
-                        {row4.map( b => (
-                            <DisplayButtons
-                                key={b.key}
-                                sty={b.sty}
-                                input={b.input}
-                                onClick={b.onClick}
-                            />
-                        ))
-                        }
-                    </div> */}
+                    {output}
                 </div>
             )
         }
