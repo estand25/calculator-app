@@ -6,18 +6,20 @@ import {
     emptyPicked, 
     numberPicked, 
     equalPicked,
+    displayAllBox
 } from '../actions'
 import '../App.css'
-
+import DisplayButtons from './DisplayButtons';
 
 class DisplayRow extends React.Component {
-    
-    generateBoxs(){
-        var a =  ['c','e','*','\xF7','7','8','9','\u2212','4','5','6','+','1','2','3','='];
-
+    generateBoxs(){        
+        var a = this.props.layOut;
+        
         if(a !== 'undefined'){
-            console.log(a);
-            var botton = [];
+            var row1 = [];
+            var row2 = [];
+            var row3 = [];
+            var row4 = [];
     
             for(let index = 0; index < a.length; index++){
                 var sty = '';
@@ -28,84 +30,125 @@ class DisplayRow extends React.Component {
                     case 'c':
                         sty = this.props.clearStyle;
                         input = 'c';
-                        oc = this.props.clearPicked();
+                        oc = () => this.props.clearPicked();
                         break;
                     case 'e':
                         sty = this.props.emptyStyle;
                         input = 'e';
-                        oc = this.props.equalPicked();
+                        oc = () => this.props.equalPicked();
                         break;
                     case '*':
                         sty = this.props.operStyle;
                         input = '*';
-                        oc = this.props.operationPicked('m')
+                        oc = () => this.props.operationPicked('m')
                         break;
                     case '\xF7':
                         sty = this.props.operStyle;
                         input = '\xF7';
-                        oc = this.props.operationPicked('d')
+                        oc = () => this.props.operationPicked('d')
                         break;
                     case '\u2212':
                         sty = this.props.operStyle;
                         input = '\u2212';
-                        oc = this.props.operationPicked('s')
+                        oc = () => this.props.operationPicked('s')
                         break;
                     case '=':
                         sty = this.props.operStyle;
                         input = '=';
-                        oc = this.props.equalPicked()
+                        oc = () => this.props.equalPicked()
                         break;
                     case '+':
                         sty = this.props.operStyle;
-                        input = '=';
-                        oc = this.props.operationPicked('a')
+                        input = '+';
+                        oc = () => this.props.operationPicked('a')
                         break;
                     default:
                         sty = this.props.numbStyle;
                         input = parseInt(a[index])
-                        oc = this.props.numberPicked(parseInt(a[index]))
+                        oc = () => this.props.numberPicked(parseInt(a[index]))
                         break;
                 }
     
-                var item = new bu (
-                    index,
-                    sty,
-                    input,
-                    oc
-                )
+                var item = new bu (index, sty, input, oc)
     
-                botton = botton.concat([item]);
+                if(index < 4)
+                {
+                    row1 = row1.concat([item]);
+                }
+                else if(index < 8)
+                {
+                    row2 = row2.concat([item]);
+                }
+                else if(index < 12)
+                {
+                    row3 = row3.concat([item])
+                }
+                else
+                {
+                    row4 = row4.concat([item])
+                }
             }
     
-            console.log(botton);
+            // console.log(row1);
+            // console.log(row2);
+            // console.log(row3);
+            // console.log(row4);
     
-            
-    
-            // return (
-            //     <div className="row">
-            //         {a.map( g => (
-            //             <DisplayButtons
-            //                 sty={}
-            //                 input={}
-            //                 onClick={() =>}
-            //             />
-            //         ))
-    
-            //         }
-            //     </div>
-            // )
+            return (
+                <div>
+                    <div className="row">
+                        {row1.map( b => (
+                            <DisplayButtons
+                                key={b.key}
+                                sty={b.sty}
+                                input={b.input}
+                                onClick={b.onClick}
+                            />
+                        ))
+                        }
+                    </div>
+                    <div className="row">
+                        {row2.map( b => (
+                            <DisplayButtons
+                                key={b.key}
+                                sty={b.sty}
+                                input={b.input}
+                                onClick={b.onClick}
+                            />
+                        ))
+                        }
+                    </div>
+                    <div className="row">
+                        {row3.map( b => (
+                            <DisplayButtons
+                                key={b.key}
+                                sty={b.sty}
+                                input={b.input}
+                                onClick={b.onClick}
+                            />
+                        ))
+                        }
+                    </div>
+                    <div className="row">
+                        {row4.map( b => (
+                            <DisplayButtons
+                                key={b.key}
+                                sty={b.sty}
+                                input={b.input}
+                                onClick={b.onClick}
+                            />
+                        ))
+                        }
+                    </div>
+                </div>
+            )
         }
     }
 
     render() {
         return (
-            <div className="row">
+            <div className="Frame-SubMain">
                 {this.generateBoxs()}
-                {/* {
-                    this.props.dr.map(d =>
-                    
-                        )
-                } */}
             </div>
         )
     }
@@ -140,6 +183,7 @@ const mapDispatchToProps = {
     emptyPicked, 
     numberPicked, 
     equalPicked,
+    displayAllBox
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DisplayRow);

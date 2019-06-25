@@ -1,21 +1,17 @@
 import { 
-    OPER_PICKED,
-    CLEAR_PICKED,
-    EMPTY_PICKED,
-    NUMBER_PICKED,
-    EQUAL_PICKED,
+    actions
 } from './type'
 
 export const operationPicked = (sign) => {
     return {
-        type: OPER_PICKED,
+        type: actions.OPER_PICKED,
         sign 
     }
 }
 
 export const clearPicked = () => {
    return {
-       type: CLEAR_PICKED,
+       type: actions.CLEAR_PICKED,
        total: 0,
        subTotal: 0,
        sign: ''
@@ -24,7 +20,7 @@ export const clearPicked = () => {
 
 export const emptyPicked = () => {
     return {
-        type: EMPTY_PICKED,
+        type: actions.EMPTY_PICKED,
         total: 0,
         sign: ''
     }
@@ -32,13 +28,19 @@ export const emptyPicked = () => {
 
 export const numberPicked = (number) => {
     return {
-        type: NUMBER_PICKED,
+        type: actions.NUMBER_PICKED,
         number
     }
 }
    
 export const equalPicked = () => {
     return {
-        type: EQUAL_PICKED
+        type: actions.EQUAL_PICKED
+    }
+}
+
+export const displayAllBox = () => {
+    return {
+        type: actions.DISPLAY_BOX
     }
 }

@@ -70,12 +70,15 @@
 }
 
 .Frame-Main {
-  /* width: 350px;
-  height: 500px; */
   border: 1px solid red;
   padding: 0px;
   margin-top: 10%;
   margin-right: 25%;
   margin-left: 25%;
   margin-bottom: 10%;
+}
+
+.Frame-SubMain {
+  width: 100%;
+  height: 100%;
 }
