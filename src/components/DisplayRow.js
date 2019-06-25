@@ -9,7 +9,8 @@ import {
     displayAllBox
 } from '../actions'
 import '../App.css'
-import DisplayButtons from './DisplayButtons';
+// import DisplayButtons from './DisplayButtons';
+import { DiRow } from '../utilies'
 
 class DisplayRow extends React.Component {
     generateBoxs(){        
@@ -20,6 +21,7 @@ class DisplayRow extends React.Component {
             var row2 = [];
             var row3 = [];
             var row4 = [];
+            var rows = [];
     
             for(let index = 0; index < a.length; index++){
                 var sty = '';
@@ -27,46 +29,54 @@ class DisplayRow extends React.Component {
                 var oc = '';
     
                 switch (a[index]) {
-                    case 'c':
+                    case 'c':{
                         sty = this.props.clearStyle;
                         input = 'c';
                         oc = () => this.props.clearPicked();
                         break;
-                    case 'e':
+                    }
+                    case 'e':{
                         sty = this.props.emptyStyle;
                         input = 'e';
                         oc = () => this.props.equalPicked();
                         break;
-                    case '*':
+                    }
+                    case '*':{
                         sty = this.props.operStyle;
                         input = '*';
                         oc = () => this.props.operationPicked('m')
                         break;
-                    case '\xF7':
+                    }
+                    case '\xF7':{
                         sty = this.props.operStyle;
                         input = '\xF7';
                         oc = () => this.props.operationPicked('d')
                         break;
-                    case '\u2212':
+                    }
+                    case '\u2212':{
                         sty = this.props.operStyle;
                         input = '\u2212';
                         oc = () => this.props.operationPicked('s')
                         break;
-                    case '=':
+                    }
+                    case '=':{
                         sty = this.props.operStyle;
                         input = '=';
                         oc = () => this.props.equalPicked()
                         break;
-                    case '+':
+                    }
+                    case '+':{
                         sty = this.props.operStyle;
                         input = '+';
                         oc = () => this.props.operationPicked('a')
                         break;
-                    default:
+                    }
+                    default:{
                         sty = this.props.numbStyle;
                         input = parseInt(a[index])
                         oc = () => this.props.numberPicked(parseInt(a[index]))
                         break;
+                    }
                 }
     
                 var item = new bu (index, sty, input, oc)
@@ -87,16 +97,27 @@ class DisplayRow extends React.Component {
                 {
                     row4 = row4.concat([item])
                 }
+
+                rows = rows.concat([item])
             }
     
-            // console.log(row1);
-            // console.log(row2);
-            // console.log(row3);
-            // console.log(row4);
-    
+            console.log(row1);
+            console.log(row2);
+            console.log(row3);
+            console.log(row4);
+            console.log(rows);
+            
+
             return (
                 <div>
-                    <div className="row">
+                    {DiRow(row1)}
+                    {DiRow(row2)}
+                    {DiRow(row3)}
+                    {DiRow(row4)}
+                    {/* <DiRow 
+                        row={row1}
+                    /> */}
+                    {/* <div className="row">
                         {row1.map( b => (
                             <DisplayButtons
                                 key={b.key}
@@ -139,7 +160,7 @@ class DisplayRow extends React.Component {
                             />
                         ))
                         }
-                    </div>
+                    </div> */}
                 </div>
             )
         }
@@ -175,7 +196,6 @@ const mapStateToProps = (state) => {
         layOut: state.bLayout,
     }
 }
-
 
 const mapDispatchToProps = {
     operationPicked, 
