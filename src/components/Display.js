@@ -4,7 +4,7 @@ import DisplayMain from './DisplayMain'
 import DisplayRow from './DisplayRow'
 import DisplayHistory from './DisplayHistory'
 
-const CFrame = () => {  
+const Display = () => {  
     return (
         <div className="Frame-Main">
             <DisplayMain />
@@ -14,4 +14,4 @@ const CFrame = () => {
     )
 }
 
-export default CFrame;
+export default Display;

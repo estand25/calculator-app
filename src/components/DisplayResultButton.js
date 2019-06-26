@@ -1,10 +1,10 @@
 import React from 'react'
 
-const ComplexDisplayButton = (props) => {
+const DisplayResultButton = (props) => {
     return (
         <div className="row">
             <div className={props.stySub}>
-                {props.subinput}
+                {props.inputSub}
             </div>
             <div className={props.sty}>
                 {props.input}
@@ -13,4 +13,4 @@ const ComplexDisplayButton = (props) => {
     )
 }
 
-export default ComplexDisplayButton
+export default DisplayResultButton
