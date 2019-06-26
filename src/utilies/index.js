@@ -18,6 +18,23 @@ const DiRow = (key, row) => {
     )
 }
 
+const DiHistoryRow = (row) => {
+    return (
+        <div className="row">
+            {/* {row} */}
+            {
+                row.map(b => (
+                        <div key={b.key} className="History-Item">
+                            {b.line}
+                        </div>
+                    ) 
+                )
+            }
+        </div>
+    )
+}
+
 export {
-    DiRow
+    DiRow,
+    DiHistoryRow
 }

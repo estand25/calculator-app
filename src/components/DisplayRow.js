@@ -9,7 +9,6 @@ import {
     displayAllBox
 } from '../actions'
 import '../App.css'
-// import DisplayButtons from './DisplayButtons';
 import { DiRow } from '../utilies'
 
 class DisplayRow extends React.Component {
@@ -19,7 +18,17 @@ class DisplayRow extends React.Component {
         if(a !== 'undefined'){
             var rows = [];
             var output = [];
-    
+
+            try {
+                if(a.length !== 16)
+                {
+                    console.log("I'm breaking, sorry...");
+                    
+                }          
+            } catch (error) {
+                a = ['c','e','*','\xF7','7','8','9','\u2212','4','5','6','+','1','2','3','='];
+            }
+
             for(let index = 0; index < a.length; index++){
                 var sty = '';
                 var input = '';
@@ -35,7 +44,7 @@ class DisplayRow extends React.Component {
                     case 'e':{
                         sty = this.props.emptyStyle;
                         input = 'e';
-                        oc = () => this.props.equalPicked();
+                        oc = () => this.props.emptyPicked();
                         break;
                     }
                     case '*':{

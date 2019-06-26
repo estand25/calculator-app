@@ -82,3 +82,19 @@
   width: 100%;
   height: 100%;
 }
+
+.Frame-History {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  overflow-y:hidden;
+}
+
+.History-Item {
+  background-color: rgb(8, 30, 131);
+  border: 1px solid red;
+  color: white;
+  height: 25px;
+  padding: 2px;
+  margin: 1px;
+}

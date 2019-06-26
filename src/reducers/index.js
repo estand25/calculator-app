@@ -12,7 +12,8 @@ const initialState = {
     numbStyle: 'Button-Number',
     bLayout: ['c','e','*','\xF7','7','8','9','\u2212','4','5','6','+','1','2','3','='],
     displayBox: false,
-    onceDisplayed: 0
+    onceDisplayed: 0,
+    history:[]
 }
 
 export const calculator = (state = initialState, action) => {
@@ -52,36 +53,55 @@ export const calculator = (state = initialState, action) => {
         }
         case actions.EQUAL_PICKED: {
             var e = ''
+            var items = ''
+            var total = ''
+
             switch (state.sign) {
                 case 'a':{
+                    total = (parseInt(state.total) + parseInt(state.subTotal))
+                    items = state.total + '+' + state.subTotal + '=' + total
+
                     e = {...state,
-                            total: (parseInt(state.total) + parseInt(state.subTotal)),
+                            total: total,
                             subTotal: 0,
-                            sign: 'e'
+                            sign: 'e',
+                            history: state.history.concat(items)
                         }
                         break;
                 }                      
                 case 's': {
+                    total = (parseInt(state.total) - parseInt(state.subTotal))
+                    items = state.total + '-' + state.subTotal + '=' + total
+
                     e = {...state,
-                            total: (parseInt(state.total) - parseInt(state.subTotal)),
+                            total: total,
                             subTotal: 0,
-                            sign: 'e'
+                            sign: 'e',
+                            history: state.history.concat(items)
                         } 
                         break; 
                 }                    
                 case 'd':{
+                    total = (parseInt(state.subTotal)/ parseInt(state.total))
+                    items = state.total + '/' + state.subTotal + '=' + total
+
                     e =  {...state,
-                            total: (parseInt(state.subTotal)/ parseInt(state.total)),
+                            total: total,
                             subTotal: 0,
-                            sign: 'e'
+                            sign: 'e',
+                            history: state.history.concat(items)
                         } 
                         break;
                     } 
                 case 'm':{
+                    total = (parseInt(state.subTotal) * parseInt(state.total))
+                    items = state.total + '*' + state.subTotal + '=' + total
+
                     e =  {...state,
-                            total: (parseInt(state.subTotal) * parseInt(state.total)),
+                            total: total,
                             subTotal: 0,
-                            sign: 'e'
+                            sign: 'e',
+                            history: state.history.concat(items)
                         }
                         break;
                 }                      
@@ -92,7 +112,6 @@ export const calculator = (state = initialState, action) => {
             }
             console.log(e);            
             return e;
-            // break;
         }
         case actions.DISPLAY_BOX: {
             var f = {...state,
