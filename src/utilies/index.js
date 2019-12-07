@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css'
-import DisplayButtons from '../components/DisplayButtons';
+import DisplayButtons from '../components/item/DisplayButtons';
 
 const DiRow = (key, row) => {
     return (

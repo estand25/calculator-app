@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-console */
 import {
     actions
 } from '../actions/type'
@@ -45,7 +47,7 @@ export const calculator = (state = initialState, action) => {
                     subTotal: 0,
                     displaySign: displaySign
                 }
-            console.log(a);
+            //console.log(a);
             return a;
         }     
         case actions.CLEAR_PICKED:{
@@ -55,7 +57,7 @@ export const calculator = (state = initialState, action) => {
                 subTotal: action.subTotal,
                 displaySign: ''  
             }
-            console.log(b);
+            //console.log(b);
             return b;
         }
         case actions.EMPTY_PICKED:{
@@ -64,14 +66,14 @@ export const calculator = (state = initialState, action) => {
                 total: action.total,
                 displaySign: ''   
             }
-            console.log(c);
+            //console.log(c);
             return c;
         }
         case actions.NUMBER_PICKED:{
             var d = {...state,
                 subTotal: state.subTotal === 0 ? action.number : state.subTotal.toString().concat(action.number)
             }
-            console.log(d);
+            //console.log(d);
             return d;
         }
         case actions.EQUAL_PICKED:{
@@ -133,14 +135,14 @@ export const calculator = (state = initialState, action) => {
                     break;
                 }
             }
-            console.log(e);            
+            //console.log(e);            
             return e;
         }
         case actions.DISPLAY_BOX:{
             var f = {...state,
                 displayBox: !state.displayBox  
             }
-            console.log(f);
+            //console.log(f);
             return f;
         }
         default:

@@ -10,7 +10,6 @@ This is what the current version looks like
 
 ## Future Features
 
-- History
 - Date Comparsion
 - etc...
 
