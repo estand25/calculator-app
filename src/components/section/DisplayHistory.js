@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
-import '../App.css'
-import { DiHistoryRow } from '../utilies'
+import { DiHistoryRow } from '../../utilies'
 
 class hItem {
     constructor(key, line) {

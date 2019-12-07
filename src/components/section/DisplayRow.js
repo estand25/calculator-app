@@ -3,9 +3,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import '../App.css'
-import { DiRow } from '../utilies'
-import { actions } from '../actions/type'
+import { DiRow } from '../../utilies'
+import { actions } from '../../actions/type'
 
 class bu { 
     constructor(key, sty, input, onClick) {        

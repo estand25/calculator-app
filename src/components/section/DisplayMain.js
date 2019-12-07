@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { useSelector } from 'react-redux';
-import '../App.css'
-import DisplayResultButton from './DisplayResultButton';
+import DisplayResultButton from '../item/DisplayResultButton';
 
 const DisplayMain = () => {
     const state_ = useSelector(state => state)
