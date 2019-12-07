@@ -15,9 +15,9 @@ jobs:
         version: 10.x
 
     - name: npm install, Coverage from Jest
-      run: 
-        npm install
-        npm run coverage
+      run: |
+          npm install
+          npm run coverage
     - name: Coveralls
       uses: coverallsapp/github-action@v1.0.1
       with: 
