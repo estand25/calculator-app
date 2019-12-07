@@ -20,8 +20,8 @@
     "build": "react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject",
-    "coverage": "NODE_ENV=test jest --coverage --coverageReporters=lcov",
-    "localcoverage": "jest --coverage --coverageReporters=lcov"
+    "coverage": "NODE_ENV=test jest --coverageReporters=lcov",
+    "localcoverage": "jest --coverage  --coverageReporters=lcov"
   },
   "browserslist": {
     "production": [
