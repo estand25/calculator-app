@@ -1,11 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import '../App.css'
 import { DiHistoryRow } from '../utilies'
 
-class DisplayHistory extends React.Component {
-    showHistory(){
-        var { history } = this.props
+class hItem {
+    constructor(key, line) {
+        this.key = key;
+        this.line = line;
+    }
+}
+
+const DisplayHistory = () => {
+    const state_ = useSelector(state => state);
+    
+    const ShowHistory = () =>{
+        var { history } = state_;
         var historyItem = [];
 
         for(let index = 0; index < history.length; index++){
@@ -28,26 +37,11 @@ class DisplayHistory extends React.Component {
         }
     }
 
-    render(){
-        return (
-            <div className="Frame-History">
-                {this.showHistory()}
-            </div>
-        )
-    }
+    return (
+        <div className="Frame-History">
+            <ShowHistory />
+        </div>
+    )
 }
 
-class hItem {
-    constructor(key, line) {
-        this.key = key;
-        this.line = line;
-    }
-}
-
-const mapStateToProps = (state) => {
-    return {
-        history: state.history
-    }
-}
-
-export default connect(mapStateToProps)(DisplayHistory);
+export default DisplayHistory

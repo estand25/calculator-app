@@ -1,19 +1,27 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-console */
+/* eslint-disable react/prop-types */
 import React from 'react'
-import { connect } from 'react-redux';
-import { 
-    operationPicked, 
-    clearPicked, 
-    emptyPicked, 
-    numberPicked, 
-    equalPicked,
-    displayAllBox
-} from '../actions'
+import { useSelector, useDispatch } from 'react-redux';
 import '../App.css'
 import { DiRow } from '../utilies'
+import { actions } from '../actions/type'
 
-class DisplayRow extends React.Component {
-    generateBoxs(){        
-        var a = this.props.layOut;
+class bu { 
+    constructor(key, sty, input, onClick) {        
+        this.key = key;
+        this.sty = sty;
+        this.input = input;
+        this.onClick = onClick;
+    }
+}
+
+const DisplayRow = () => {
+    const mState = useSelector(state => state)
+    const mDispatch = useDispatch()
+
+    const GenerateBoxs = () =>{        
+        var a = mState.layOut;
         
         if(a !== 'undefined'){
             var rows = [];
@@ -23,7 +31,6 @@ class DisplayRow extends React.Component {
                 if(a.length !== 16)
                 {
                     console.log("I'm breaking, sorry...");
-                    
                 }          
             } catch (error) {
                 a = ['c','e','*','\xF7','7','8','9','\u2212','4','5','6','+','1','2','3','='];
@@ -36,51 +43,77 @@ class DisplayRow extends React.Component {
     
                 switch (a[index]) {
                     case 'c':{
-                        sty = this.props.clearStyle;
+                        sty = mState.clearStyle;
                         input = 'c';
-                        oc = () => this.props.clearPicked();
+                        oc = () => mDispatch({
+                            type: actions.CLEAR_PICKED,
+                            total: 0,
+                            subTotal: 0,
+                            sign: ''
+                        })
                         break;
                     }
                     case 'e':{
-                        sty = this.props.emptyStyle;
+                        sty = mState.emptyStyle;
                         input = 'e';
-                        oc = () => this.props.emptyPicked();
+                        oc = () => mDispatch({
+                            type: actions.EMPTY_PICKED,
+                            total: 0,
+                            sign: ''
+                        })
                         break;
                     }
                     case '*':{
-                        sty = this.props.operStyle;
+                        sty = mState.operStyle;
                         input = '*';
-                        oc = () => this.props.operationPicked('m')
+                        oc = () => mDispatch({
+                            type: actions.OPER_PICKED,
+                            sign: 'm'
+                        })
                         break;
                     }
                     case '\xF7':{
-                        sty = this.props.operStyle;
+                        sty = mState.operStyle;
                         input = '\xF7';
-                        oc = () => this.props.operationPicked('d')
+                        oc = () => mDispatch({
+                            type: actions.OPER_PICKED,
+                            sign: 'd'
+                        })
                         break;
                     }
                     case '\u2212':{
-                        sty = this.props.operStyle;
+                        sty = mState.operStyle;
                         input = '\u2212';
-                        oc = () => this.props.operationPicked('s')
+                        oc = () => mDispatch({
+                            type: actions.OPER_PICKED,
+                            sign: 's'
+                        })
                         break;
                     }
                     case '=':{
-                        sty = this.props.operStyle;
+                        sty = mState.operStyle;
                         input = '=';
-                        oc = () => this.props.equalPicked()
+                        oc = () => mDispatch({
+                            type: actions.EQUAL_PICKED
+                        })
                         break;
                     }
                     case '+':{
-                        sty = this.props.operStyle;
+                        sty = mState.operStyle;
                         input = '+';
-                        oc = () => this.props.operationPicked('a')
+                        oc = () => mDispatch({
+                            type: actions.OPER_PICKED,
+                            sign: 'a'
+                        })
                         break;
                     }
                     default:{
-                        sty = this.props.numbStyle;
+                        sty = mState.numbStyle;
                         input = parseInt(a[index])
-                        oc = () => this.props.numberPicked(parseInt(a[index]))
+                        oc = () => mDispatch({
+                            type: actions.NUMBER_PICKED,
+                            number: parseInt(a[index])
+                        })
                         break;
                     }
                 }
@@ -102,44 +135,11 @@ class DisplayRow extends React.Component {
         }
     }
 
-    render() {
-        return (
-            <div className="Frame-SubMain">
-                {this.generateBoxs()}
-            </div>
-        )
-    }
+    return (
+        <div className="Frame-SubMain">
+            <GenerateBoxs />
+        </div>
+    )
 }
 
-class bu { 
-    constructor(key, sty, input, onClick) {        
-        this.key = key;
-        this.sty = sty;
-        this.input = input;
-        this.onClick = onClick;
-    }
-}
-
-const mapStateToProps = (state) => {
-    return {
-        total: state.total, 
-        subTotal: state.subTotal, 
-        sign: state.sign,
-        clearStyle: state.clearStyle,
-        emptyStyle: state.emptyStyle,
-        operStyle: state.operStyle,
-        numbStyle: state.numbStyle,
-        layOut: state.bLayout,
-    }
-}
-
-const mapDispatchToProps = {
-    operationPicked, 
-    clearPicked, 
-    emptyPicked, 
-    numberPicked, 
-    equalPicked,
-    displayAllBox
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DisplayRow);
+export default DisplayRow

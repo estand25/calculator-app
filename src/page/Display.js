@@ -1,8 +1,8 @@
 import React from 'react';
 import '../App.css'
-import DisplayMain from './DisplayMain'
-import DisplayRow from './DisplayRow'
-import DisplayHistory from './DisplayHistory'
+import DisplayMain from '../components/DisplayMain'
+import DisplayRow from '../components/DisplayRow'
+import DisplayHistory from '../components/DisplayHistory'
 
 const Display = () => {  
     return (

@@ -1,30 +1,22 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import '../App.css'
 import DisplayResultButton from './DisplayResultButton';
 
-class DisplayMain extends React.Component {
-    render() {
-        return (
-            <div className="column">
-                <DisplayResultButton
-                    stySub={"Button-MainSub"}
-                    inputSub={this.props.total + ' ' + this.props.displaySign}
-                    sty={"Button-Main"}
-                    input={this.props.subTotal}
-                />
-            </div>
-        )
-    }
+const DisplayMain = () => {
+    const state_ = useSelector(state => state)
+    return (
+        <div className="column">
+            <DisplayResultButton
+                stySub={"Button-MainSub"}
+                inputSub={state_.total + ' ' + state_.displaySign}
+                sty={"Button-Main"}
+                input={state_.subTotal}
+            />
+        </div>
+    )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        total: state.total, 
-        subTotal: state.subTotal, 
-        displaySign: state.displaySign
-    }
-}
-
-export default connect(mapStateToProps)(DisplayMain)
+export default DisplayMain
 
