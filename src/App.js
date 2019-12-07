@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { calculator } from './reducers'
 import Display from './page/Display'
-import './App.css';
+// import './App.css';
 
 const store = createStore(calculator)
 
