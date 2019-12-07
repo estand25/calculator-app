@@ -18,6 +18,3 @@ jobs:
       run: 
         npm install
         npm run coverage
-    - name: Coveralls
-      uses: coverallsapp/github-action@v1.0.1
-      with: github-token: ${{ secrets.github_token }}
