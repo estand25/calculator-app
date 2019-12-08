@@ -4,21 +4,22 @@ import { actions } from '../actions/type'
 import {calculator} from './index'
 
 describe('reducer', () => {
+    const initialState = {
+        sign: "",
+        total: 0,
+        subTotal: 0,
+        clearStyle: 'Button-Clear',
+        emptyStyle: 'Button-Empty',
+        operStyle: 'Button-Operation',
+        numbStyle: 'Button-Number',
+        bLayout: ['c','e','*','\xF7','7','8','9','\u2212','4','5','6','+','1','2','3','='],
+        displayBox: false,
+        onceDisplayed: 0,
+        history: [],
+        displaySign: ''
+    }
+
     it('should return the initial state', () => {
-        const initialState = {
-            sign: "",
-            total: 0,
-            subTotal: 0,
-            clearStyle: 'Button-Clear',
-            emptyStyle: 'Button-Empty',
-            operStyle: 'Button-Operation',
-            numbStyle: 'Button-Number',
-            bLayout: ['c','e','*','\xF7','7','8','9','\u2212','4','5','6','+','1','2','3','='],
-            displayBox: false,
-            onceDisplayed: 0,
-            history: [],
-            displaySign: ''
-        }
 
         expect(calculator(undefined, {})).toEqual(initialState)
     })
@@ -32,6 +33,21 @@ describe('reducer', () => {
             type: actions.OPER_PICKED,
             sign: 'a'
         })
+    })
+
+    it('should return ', () => {
+        const a = {
+            type: actions.OPER_PICKED,
+            sign: 'a'
+        }
+
+        var rec = Object.assign(initialState, {})
+        rec.sign = 'a'
+        rec.total = 0
+        rec.subTotal = 0
+        rec.displaySign = '+' 
+
+        expect(calculator(initialState, a)).toEqual(rec)
     })
 
     it('should set operation picker subtact', () => {
