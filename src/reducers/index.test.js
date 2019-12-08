@@ -23,7 +23,7 @@ describe('reducer', () => {
         expect(calculator(undefined, {})).toEqual(initialState)
     })
 
-    it('should set operation picker', () => {
+    it('should set operation picker add', () => {
         const a = {
             type: actions.OPER_PICKED,
             sign: 'a'
@@ -32,7 +32,9 @@ describe('reducer', () => {
             type: actions.OPER_PICKED,
             sign: 'a'
         })
+    })
 
+    it('should set operation picker subtact', () => {
         const s = {
             type: actions.OPER_PICKED,
             sign: 's'
@@ -41,7 +43,9 @@ describe('reducer', () => {
             type: actions.OPER_PICKED,
             sign: 's'
         })
+    })
 
+    it('should set operation picker divid', () => {
         const d = {
             type: actions.OPER_PICKED,
             sign: 'd'
@@ -50,7 +54,9 @@ describe('reducer', () => {
             type: actions.OPER_PICKED,
             sign: 'd'
         })
+    })
 
+    it('should set operation picker time', () => {
         const m = {
             type: actions.OPER_PICKED,
             sign: 'm'
@@ -59,7 +65,9 @@ describe('reducer', () => {
             type: actions.OPER_PICKED,
             sign: 'm'
         })
-        
+    })
+
+    it('should set operation picker nothing', () => {
         const _ = {
             type: actions.OPER_PICKED,
             sign: '_'
