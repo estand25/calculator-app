@@ -35,7 +35,7 @@ describe('reducer', () => {
         })
     })
 
-    it('should return ', () => {
+    it('should return state plus sign Add', () => {
         const a = {
             type: actions.OPER_PICKED,
             sign: 'a'
@@ -61,7 +61,22 @@ describe('reducer', () => {
         })
     })
 
-    it('should set operation picker divid', () => {
+    it('should return state plus sign subtract', () => {
+        const a = {
+            type: actions.OPER_PICKED,
+            sign: 's'
+        }
+
+        var rec = Object.assign(initialState, {})
+        rec.sign = 's'
+        rec.total = 0
+        rec.subTotal = 0
+        rec.displaySign = '\u2212'
+
+        expect(calculator(initialState, a)).toEqual(rec)
+    })
+
+    it('should set operation picker divide', () => {
         const d = {
             type: actions.OPER_PICKED,
             sign: 'd'
@@ -70,6 +85,21 @@ describe('reducer', () => {
             type: actions.OPER_PICKED,
             sign: 'd'
         })
+    })
+
+    it('should return state plus sign divide', () => {
+        const a = {
+            type: actions.OPER_PICKED,
+            sign: 'd'
+        }
+
+        var rec = Object.assign(initialState, {})
+        rec.sign = 'd'
+        rec.total = 0
+        rec.subTotal = 0
+        rec.displaySign = '\xF7'
+
+        expect(calculator(initialState, a)).toEqual(rec)
     })
 
     it('should set operation picker time', () => {
@@ -81,6 +111,21 @@ describe('reducer', () => {
             type: actions.OPER_PICKED,
             sign: 'm'
         })
+    })
+
+    it('should return state plus sign time', () => {
+        const a = {
+            type: actions.OPER_PICKED,
+            sign: 'm'
+        }
+
+        var rec = Object.assign(initialState, {})
+        rec.sign = 'm'
+        rec.total = 0
+        rec.subTotal = 0
+        rec.displaySign = '*'
+
+        expect(calculator(initialState, a)).toEqual(rec)
     })
 
     it('should set operation picker nothing', () => {
@@ -110,6 +155,22 @@ describe('reducer', () => {
         })
     })
 
+    it('should clear picker return additional state', () => {
+        const a = {
+            type: actions.CLEAR_PICKED,
+            total: 1,
+            subTotal: 1
+        }
+
+        var rec = Object.assign(initialState, {})
+        rec.sign = undefined
+        rec.total = 1
+        rec.subTotal = 1
+        rec.displaySign = ''
+
+        expect(calculator(initialState, a)).toEqual(rec)
+    })
+
     it('should Empty picker', () => {
         const expectAction = {
             type: actions.EMPTY_PICKED,
@@ -124,6 +185,21 @@ describe('reducer', () => {
         })
     })
 
+    it('should Empty picker return additional state', () => {
+        const a = {
+            type: actions.EMPTY_PICKED,
+            total: 0,
+            sign: ''
+        }
+
+        var rec = Object.assign(initialState, {})
+        rec.sign = ''
+        rec.total = 0
+        rec.displaySign = ''
+
+        expect(calculator(initialState, a)).toEqual(rec)
+    })
+
     it('should Number picker', () => {
         const expectAction = {
             type: actions.NUMBER_PICKED,
@@ -134,6 +210,18 @@ describe('reducer', () => {
             type: actions.NUMBER_PICKED,
             number: 0
         })
+    })
+
+    it('should Number picker return additional state', () => {
+        const a = {
+            type: actions.NUMBER_PICKED,
+            number: 0
+        }
+
+        var rec = Object.assign(initialState, {})
+        rec.subTotal = 0
+
+        expect(calculator(initialState, a)).toEqual(rec)
     })
 
     it('should equal picker', () => {
