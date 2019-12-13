@@ -13,7 +13,7 @@ This is what the current version looks like
 ## Future Features
 
 - Date Comparsion
-- etc...
+- etc....
 
 ## Available Scripts
 

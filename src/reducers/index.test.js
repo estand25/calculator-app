@@ -374,6 +374,30 @@ describe('reducer', () => {
         expect(calculator(state, a)).toEqual(rec)
     })
 
+    it('should equal picker with no sign', () => {
+        const a = {
+            type: actions.EQUAL_PICKED
+        }
+
+        var state = {
+            sign: "",
+            total: 0,
+            subTotal: 0,
+            clearStyle: 'Button-Clear',
+            emptyStyle: 'Button-Empty',
+            operStyle: 'Button-Operation',
+            numbStyle: 'Button-Number',
+            bLayout: ['c','e','*','\xF7','7','8','9','\u2212','4','5','6','+','1','2','3','='],
+            displayBox: false,
+            onceDisplayed: 0,
+            history: [],
+            displaySign: ''
+        }
+
+        
+        expect(calculator(state, a)).toEqual("")
+    })
+
     it('should display', () => {
         var a = {
             type: actions.DISPLAY_BOX
