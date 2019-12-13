@@ -233,4 +233,24 @@ describe('reducer', () => {
             type: actions.EQUAL_PICKED
         })
     })
+
+    it('should equal picker with plus', () => {
+        const a = {
+            type: actions.EQUAL_PICKED
+        }
+
+        var state = Object.assign(initialState, {})
+        state.sign = 'a'
+
+        var item = "0+0=0"
+        var history = []
+
+        var rec = Object.assign(initialState, {})
+        rec.total = 0
+        rec.subTotal = 0
+        rec.sign = 'e'
+        rec.history = history.concat(item)
+
+        expect(calculator(state, a)).toEqual("")
+    })
 })
