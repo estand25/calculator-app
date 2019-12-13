@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import { actions } from '../actions/type'
@@ -254,18 +255,160 @@ describe('reducer', () => {
             type: actions.EQUAL_PICKED
         }
 
-        var state = Object.assign(initialState, {})
-        state.sign = 'a'
+        var state = {
+            sign: "a",
+            total: 0,
+            subTotal: 0,
+            clearStyle: 'Button-Clear',
+            emptyStyle: 'Button-Empty',
+            operStyle: 'Button-Operation',
+            numbStyle: 'Button-Number',
+            bLayout: ['c','e','*','\xF7','7','8','9','\u2212','4','5','6','+','1','2','3','='],
+            displayBox: false,
+            onceDisplayed: 0,
+            history: [],
+            displaySign: ''
+        }
 
         var item = "0+0=0"
-        var history = []
-
+        
         var rec = Object.assign(initialState, {})
         rec.total = 0
         rec.subTotal = 0
         rec.sign = 'e'
-        rec.history = history.concat(item)
+        rec.history = state.history.concat(item)
+        
+        expect(calculator(state, a)).toEqual(rec)
+    })
 
-        expect(calculator(state, a)).toEqual("")
+    it('should equal picker with subtract', () => {
+        const a = {
+            type: actions.EQUAL_PICKED
+        }
+
+        var state = {
+            sign: "s",
+            total: 0,
+            subTotal: 0,
+            clearStyle: 'Button-Clear',
+            emptyStyle: 'Button-Empty',
+            operStyle: 'Button-Operation',
+            numbStyle: 'Button-Number',
+            bLayout: ['c','e','*','\xF7','7','8','9','\u2212','4','5','6','+','1','2','3','='],
+            displayBox: false,
+            onceDisplayed: 0,
+            history: [],
+            displaySign: ''
+        }
+
+        var item = "0\u22120=0"
+        
+        var rec = Object.assign(initialState, {})
+        rec.total = 0
+        rec.subTotal = 0
+        rec.sign = 'e'
+        rec.history = state.history.concat(item)
+        
+        expect(calculator(state, a)).toEqual(rec)
+    })
+
+    it('should equal picker with divide', () => {
+        const a = {
+            type: actions.EQUAL_PICKED
+        }
+
+        var state = {
+            sign: "d",
+            total: 10,
+            subTotal: 5,
+            clearStyle: 'Button-Clear',
+            emptyStyle: 'Button-Empty',
+            operStyle: 'Button-Operation',
+            numbStyle: 'Button-Number',
+            bLayout: ['c','e','*','\xF7','7','8','9','\u2212','4','5','6','+','1','2','3','='],
+            displayBox: false,
+            onceDisplayed: 0,
+            history: [],
+            displaySign: ''
+        }
+
+        var item = "10\xF75=0.5"
+        
+        var rec = Object.assign(initialState, {})
+        rec.total = 0.5
+        rec.subTotal = 0
+        rec.sign = 'e'
+        rec.history = state.history.concat(item)
+        
+        expect(calculator(state, a)).toEqual(rec)
+    })
+
+    it('should equal picker with time', () => {
+        const a = {
+            type: actions.EQUAL_PICKED
+        }
+
+        var state = {
+            sign: "m",
+            total: 10,
+            subTotal: 5,
+            clearStyle: 'Button-Clear',
+            emptyStyle: 'Button-Empty',
+            operStyle: 'Button-Operation',
+            numbStyle: 'Button-Number',
+            bLayout: ['c','e','*','\xF7','7','8','9','\u2212','4','5','6','+','1','2','3','='],
+            displayBox: false,
+            onceDisplayed: 0,
+            history: [],
+            displaySign: ''
+        }
+
+        var item = "10*5=50"
+        
+        var rec = Object.assign(initialState, {})
+        rec.total = 50
+        rec.subTotal = 0
+        rec.sign = 'e'
+        rec.history = state.history.concat(item)
+        
+        expect(calculator(state, a)).toEqual(rec)
+    })
+
+    it('should display', () => {
+        var a = {
+            type: actions.DISPLAY_BOX
+        }
+
+        var state = {
+            sign: "",
+            total: 0,
+            subTotal: 0,
+            clearStyle: 'Button-Clear',
+            emptyStyle: 'Button-Empty',
+            operStyle: 'Button-Operation',
+            numbStyle: 'Button-Number',
+            bLayout: ['c','e','*','\xF7','7','8','9','\u2212','4','5','6','+','1','2','3','='],
+            displayBox: false,
+            onceDisplayed: 0,
+            history: [],
+            displaySign: ''
+        }
+
+        var initialState = {
+            sign: "",
+            total: 0,
+            subTotal: 0,
+            clearStyle: 'Button-Clear',
+            emptyStyle: 'Button-Empty',
+            operStyle: 'Button-Operation',
+            numbStyle: 'Button-Number',
+            bLayout: ['c','e','*','\xF7','7','8','9','\u2212','4','5','6','+','1','2','3','='],
+            displayBox: true,
+            onceDisplayed: 0,
+            history: [],
+            displaySign: ''
+        }
+
+        expect(calculator(state, a)).toEqual(initialState)
     })
 })
