@@ -139,6 +139,21 @@ describe('reducer', () => {
         })
     })
 
+    it('should return state plus no sign', () => {
+        const a = {
+            type: actions.OPER_PICKED,
+            sign: '_'
+        }
+
+        var rec = Object.assign(initialState, {})
+        rec.sign = '_'
+        rec.total = 0
+        rec.subTotal = 0
+        rec.displaySign = ''
+
+        expect(calculator(initialState, a)).toEqual(rec)
+    })
+
     it('should clear picker', () => {
         const expectAction = {
             type: actions.CLEAR_PICKED,
