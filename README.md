@@ -1,4 +1,3 @@
-[![Coverage Status](https://coveralls.io/repos/github/estand25/calculator-app/badge.svg?branch=master)](https://coveralls.io/github/estand25/calculator-app?branch=master)
 
 ## calculator-app
 
